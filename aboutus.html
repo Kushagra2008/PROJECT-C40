@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *   {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            text-decoration: none;
+            font-family: Mali, cursive;
+        }
+        body   {
+            overflow: hidden;
+        }
+        .hamburger  {
+            width: 50px;
+            height: 6px;
+            position: absolute;
+            background-color: white;
+            border-radius: 5px;
+            transition: all 1s ease-in-out;
+            right: 8%;
+            top: 7%;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .hamburger::before,  
+        .hamburger::after  {
+            content: '';
+            width: 50px;
+            height: 6px;
+            position: absolute;
+            background-color: white;
+            border-radius: 5px;
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .hamburger::before  {
+            transform: translateY(-16px);
+        }
+
+        .hamburger::after  {
+            transform: translateY(16px);
+        }
+
+        .hamburger.open    {
+            transform: translateX(-50px);
+            background-color: transparent;
+        }
+
+        .hamburger.open::before    {
+            transform: rotate(45deg) translate(35px, -35px);
+        }
+
+        .hamburger.open::after    {
+            transform: rotate(-45deg) translate(35px, 35px);
+        }
+
+        #box    {
+            transition: 1s ease;
+            position: absolute;
+            right: -100vw;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #00d6b3;
+        }
+        .icons  {
+            display: flex;
+            margin-left: 20rem;
+            /* align-content: center; */
+            /* margin-left: 24rem; */
+        }
+        .icons img  {
+            margin-left: 25px;
+        }
+
+        .icons img:nth-child(1) {
+            margin-left: 0px;
+        }
+    </style>
+</head>
+<body bgcolor="#05a389">
+    <p style="color: white; padding-top: 15rem; padding-left: 20rem; font-size: 50px;">Hey There,</p>
+    <span style="color: white; padding-top: 15rem; padding-left: 20rem; font-size: 20px; line-height: 40px; letter-spacing: 1px;">This is Kushagra Dwivedy</span>
+    <br><br><br>
+
+    <div class="icons">
+        <img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png" width="60px" height="60px">
+        <img src="https://cliply.co/wp-content/uploads/2019/04/371903520_SOCIAL_ICONS_INSTAGRAM.png" width="81px" height="81px" style="margin-top: -10px;">
+        <img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/github-sociocon.png" width="71px" height="71px" style="margin-top: -5px;">
+    </div>
+
+    <img src="images/undraw_Coding_re_iv62 (1).svg" width="500px" style="margin-left: 45rem; margin-top: -15.5rem;">
+
+    <div class="hamburger"></div>
+
+    <div id="box"></div>
+
+<script>
+    const blast = document.querySelector('#blast');
+        const p = document.querySelector('#foo');
+        const ham = document.querySelector('.hamburger');
+        const box = document.querySelector('#box')
+        
+        let menuOpened = false;
+
+        ham.onclick = () => {
+            if (!(menuOpened)) {
+                ham.classList.add('open');
+                menuOpened = true;
+                box.style.right = "0vw";
+                // setTimeout(() => {
+                    // for (let x = 0; x < 3; x++) {
+                        let d = document.createElement('a');
+                        d.className = "links"
+                        d.href = "../index.html"
+                        d.innerText = "Home"
+                        d.style.position = "absolute"
+                        d.style.top = "50%"
+                        d.style.left = "50%"
+                        d.style.transform = "translate(-50%, -50%)"
+                        d.style.zIndex = "10000"
+                        d.style.opacity = "0"
+                        d.style.transition = "2s ease"
+                        d.style.fontSize = "50px"
+                        document.body.appendChild(d);
+                        setTimeout(() => {
+                            d.style.opacity = "1";
+                        }, 500);
+                    // }
+                // }, 1000);
+            }   else    {
+                let link = document.querySelector('.links');
+                link.style.opacity = "0";
+                link.style.transition = ".6s ease"
+                setTimeout(() => {
+                    link.remove();
+                }, 1000);
+                ham.classList.remove('open');
+                menuOpened = false;
+                box.style.right = "-100vw";
+            }
+        }
+</script>
+</body>
+</html>
